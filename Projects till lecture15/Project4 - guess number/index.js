@@ -1,5 +1,5 @@
 let randomNumber = parseInt((Math.random() * 100) + 1);
-
+// console.log(randomNumber);
 const submit = document.querySelector('#subt');
 const userInput = document.querySelector('#guessField');
 const previousGuesses = document.querySelector('.guesses');
@@ -19,7 +19,7 @@ if (playGame) {
     submit.addEventListener('click', (e) => {
         e.preventDefault();
         const guessNum = parseInt(userInput.value);
-        console.log(guessNum);
+        // console.log(guessNum);
         ValidateGuess(guessNum);
     })
 }
@@ -36,8 +36,14 @@ function ValidateGuess(guess) {
         prevGuess.push(guess);
         if (numGuess === 10) {
             displayGuess(guess);
-            displayMessage(`Game Over! and the Machines Guess Number was ${randomNumber}`);
-            endGame();
+            if (guess === randomNumber) {
+                displayMessage(`You guessed it right!`);
+                endGame();
+            } else {
+                lastResult.innerHTML = "No remaining guesses left!";
+                displayMessage(`Game Over! and the Machines Guess Number was ${randomNumber}`);
+                endGame();
+            }
         } else {
             displayGuess(guess);
             checkGuess(guess);
@@ -48,7 +54,7 @@ function ValidateGuess(guess) {
 
 function checkGuess(guess) {
     if (guess === randomNumber) {
-        displayMessage(`You guessed it right!`)
+        displayMessage(`You guessed it right!`);
         endGame();
     } else if (guess < randomNumber) {
         displayMessage(`Guessed Number is too low!`);
@@ -80,7 +86,7 @@ function endGame() {
     p.style.borderRadius = "10px"
     p.style.backgroundColor = "black";
     resultParas.appendChild(p);
-    lastResult.innerHTML = "No remaining guesses left!";
+    // lastResult.innerHTML = "No remaining guesses left!";
     playGame = false;
     newGame();
 }
@@ -91,11 +97,13 @@ function newGame() {
     newGameButton.addEventListener('click', (e) => {
         lowOrHi.innerHTML = '';
         randomNumber = parseInt((Math.random() * 100) + 1);
+        // console.log(randomNumber);
         prevGuess = [];
         numGuess = 1;
         previousGuesses.innerHTML = '';
         lastResult.innerHTML = `${11 - numGuess}`;
         userInput.removeAttribute('disabled');
+        submit.removeAttribute('disabled')
         resultParas.removeChild(p);
         playGame = true;
     })
