@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api's</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #212121;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            width: 20%;
+        }
+
+        .circle {
+            text-align: center;
+            background-color: rgb(67, 151, 226);
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 2px solid gray;
+            margin: 15px;
+            object-fit: contain;
+            overflow: hidden;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .follow {
+            width: 220px;
+            display: flex;
+        }
+
+
+        .followers,
+        .following {
+            color: white;
+            font-size: larger;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1 style="color: #fff;">This data is received from an API !</h1>
+        <div class="card">
+            <div class="circle">
+                <img src="" alt="">
+            </div>
+            <div class="follow">
+                <h5 class="followers"> <span>0 </span>followers</h5>
+                <h5 class="following"> <span>0 </span>following</h5>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+
+    const requestUrl = 'https://api.github.com/users/hemantyadav8006';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestUrl);
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+            let avatar = data.avatar_url;
+            let followers = data.followers + " ";
+            let following = data.following + " ";
+
+            console.log(followers);
+            document.querySelector(".circle img").setAttribute("src", `${avatar}`);
+
+            document.querySelector(".followers span").innerHTML = `${followers}`;
+            document.querySelector(".following span").innerHTML = `${following}`;
+
+        }
+    }
+    xhr.send();
+</script>
+
+</html>
