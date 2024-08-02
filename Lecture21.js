@@ -112,7 +112,12 @@ async function getAllUsers() {
 getAllUsers();
 
 
-fetch('https://jsonplaceholder.typicode.com/users')
+
+// fetch in js
+
+
+// fetch('https://jsonplaceholder.typicode.com/users')
+fetch('https://api.github.com/users/hemantyadav8006')
     .then((res) => {
         return res.json();
     }).then((data) => {
