@@ -8,11 +8,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Closure aur chai</title>
+    <style>
+        body {
+            height: 90vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        button {
+            padding: 5px 8px;
+            background-color: #313131;
+            color: white;
+            border-radius: 5px;
+            outline: none;
+            box-shadow: 1px 1px 15px #525151;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 
 <body style="background-color: #313131;">
     <button id="orange">Orange</button>
     <button id="green">Green</button>
+    <button id="black">black</button>
+    <button id="pink">pink</button>
+    <button id="blue">blue</button>
+    <button id="Back">Back to Normal!</button>
 </body>
 
 <script>
@@ -74,6 +97,10 @@
 
     document.getElementById('orange').onclick = clickHandler("orange")
     document.getElementById('green').onclick = clickHandler("green")
+    document.getElementById('black').onclick = clickHandler("black")
+    document.getElementById('pink').onclick = clickHandler("pink")
+    document.getElementById('blue').onclick = clickHandler("blue")
+    document.getElementById('Back').onclick = clickHandler("#313131")
 
 </script>
 
